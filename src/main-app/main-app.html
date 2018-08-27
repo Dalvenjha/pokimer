@@ -1,0 +1,39 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../pokemon-dm/pokemon-dm.html">
+<link rel="import" href="../pokemon-ui/pokemon-ui.html">
+
+<dom-module id="main-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h3>Pokémon</h3>
+    <pokemon-dm pokemons="{{pokemons}}"></pokemon-dm>
+    <pokemon-ui pokemons="{{pokemons}}"></pokemon-ui>
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class MainApp extends Polymer.Element {
+      static get is() { return 'main-app'; }
+      static get properties() {
+        return {
+          pokemons: {
+            type: Array,
+            observer: '_updatePost'
+          }
+        };
+      }
+      _updatePost(){
+        console.log('main._updatePost: Checar pokémon', this.pokemons)
+      }
+    }
+
+    window.customElements.define(MainApp.is, MainApp);
+  </script>
+</dom-module>

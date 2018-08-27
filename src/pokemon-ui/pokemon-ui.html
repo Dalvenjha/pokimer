@@ -1,0 +1,56 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../pokemon-dm/pokemon-dm.html">
+
+<dom-module id="pokemon-ui">
+  <template>
+
+    <style>
+      :host {
+        display: block;
+      }
+
+      paper-card{
+        width: 100%;
+        margin-bottom: 15px;
+      }
+    </style>
+    <h2>Contact list</h2>
+
+    <template is="dom-repeat" items="{{pokemons}}">
+          <div class="card-content">
+            <div class="cafe-header">{{item.name}}</div>
+            <p>{{item.url}}</p>
+          </div>
+    </template>
+  </template>
+
+  <script>
+    /**
+     * `example-list`
+     * list of elements on polymer
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class PokemonUi extends Polymer.Element {
+      static get is() { return 'pokemon-ui'; }
+      static get properties() {
+        return {
+          pokemons: {
+            type: Array,
+            value: [],
+            observer: '_updatePostUi'
+          }
+        };
+      }
+
+      _updatePostUi(){
+        console.log('_updatePostUi', this.pokemons);
+      }
+
+    }
+
+    window.customElements.define(PokemonUi.is, PokemonUi);
+  </script>
+</dom-module>

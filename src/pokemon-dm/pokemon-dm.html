@@ -1,0 +1,45 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../pokemon-dp/pokemon-dp.html">
+
+<dom-module id="pokemon-dm">
+  <template>
+    <pokemon-dp id="pokemonId" pokemons="{{pokemons}}"></pokemon-dp>
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class PokemonDm extends Polymer.Element {
+      static get is() { return 'pokemon-dm'; }
+      constructor(){
+        super();
+        console.log('PokemonDm.constructor Obtener Pokémon');
+      }
+
+      ready() {
+        super.ready();
+        console.log(this.$.pokemonId);
+        if(this.$.pokemonId != undefined && this.$.pokemonId != null){
+          this.doRequest();
+        }
+      }
+
+      doRequest(){
+        this.$.pokemonId.requestToPosts();
+      }
+
+      static get properties() {
+        return {
+          pokemons: {
+            type: Array,
+            notify: true
+          }
+        };
+      }
+    }
+
+    window.customElements.define(PokemonDm.is, PokemonDm);
+  </script>
+</dom-module>
